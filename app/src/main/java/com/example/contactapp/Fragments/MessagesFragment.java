@@ -1,4 +1,4 @@
-package com.example.contactapp;
+package com.example.contactapp.Fragments;
 
 import android.os.Bundle;
 
@@ -8,6 +8,8 @@ import androidx.viewbinding.ViewBinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.contactapp.R;
 
 public class MessagesFragment extends Fragment {
 

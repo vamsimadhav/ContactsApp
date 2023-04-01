@@ -1,10 +1,12 @@
 package com.example.contactapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.contactapp.Fragments.ContactsFragment;
+import com.example.contactapp.Fragments.MessagesFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.layout,
                             new ContactsFragment()).commit();
+        } else {
+            //Do Nothing
         }
     }
 }
