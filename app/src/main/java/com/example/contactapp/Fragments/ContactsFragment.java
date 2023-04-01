@@ -46,11 +46,11 @@ public class ContactsFragment extends Fragment {
             public void onClick(int index) {
                 Bundle args = new Bundle();
                 args.putParcelable("data", data.get(index));
-                SendMessage sendMessage = new SendMessage();
-                sendMessage.setArguments(args);
+                DisplayContact displayContact = new DisplayContact();
+                displayContact.setArguments(args);
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.layout,
-                                sendMessage).commit();
+                                displayContact).commit();
             }
         };
         adapter = new ContactsAdapter(data,clickListener);
