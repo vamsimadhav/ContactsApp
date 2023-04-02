@@ -41,14 +41,18 @@ public class SendMessage extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_send_message, container, false);
+
         databaseHelper = DatabaseHelper.getDB(getContext());
         Button sendMessage = rootView.findViewById(R.id.sendMessage);
         TextView testMessage = rootView.findViewById(R.id.textMessage);
+
         Bundle args = getArguments();
         String ph = args.getString("phNo");
+
         name = args.getString("name");
         phNoWithCode = "+91" + ph;
         otp =  getRandomNumberString();
+
         String tmessage = "Hi. Your OTP is: " + otp;
         testMessage.setText(tmessage);
 

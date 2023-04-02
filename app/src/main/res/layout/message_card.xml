@@ -21,13 +21,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Contact Name"/>
+                android:text="@string/contact_name"/>
             <TextView
                 android:id="@+id/timeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:text="Contact Time"/>
+                android:text="@string/contact_time"/>
         </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
-                    android:text="OTP"
+                    android:text="@string/otp"
                     android:textAlignment="center"/>
             </LinearLayout>
     </LinearLayout>

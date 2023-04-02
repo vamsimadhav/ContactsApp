@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.contactapp.ClickListener;
+import com.example.contactapp.Interface.ClickListener;
 import com.example.contactapp.R;
 
 import java.util.Collections;

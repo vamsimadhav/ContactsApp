@@ -25,13 +25,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/fullName"
-                android:text="Full Name"
+                android:text="@string/full_name"
                 style="@style/TextStyle"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/contactNum"
-                android:text="Contact Number"
+                android:text="@string/contact_number"
                 style="@style/TextStyle"
                 />
          </LinearLayout>
@@ -41,7 +41,7 @@
           android:id="@+id/sendMessage"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-         android:text="Send Message"
+         android:text="@string/send_message"
           android:layout_marginTop="32dp"
          android:layout_marginEnd="64dp"
          android:layout_marginStart="64dp"
