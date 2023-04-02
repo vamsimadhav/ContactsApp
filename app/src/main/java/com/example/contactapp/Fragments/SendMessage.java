@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.contactapp.Fragments.MessagesFragment.Recycler_Helpers.DatabaseHelper;
 import com.example.contactapp.Fragments.MessagesFragment.Recycler_Helpers.MessageData;
 import com.example.contactapp.R;

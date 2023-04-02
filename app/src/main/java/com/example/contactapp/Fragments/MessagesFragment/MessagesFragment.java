@@ -16,6 +16,8 @@ import com.example.contactapp.Fragments.MessagesFragment.Recycler_Helpers.Messag
 import com.example.contactapp.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MessagesFragment extends Fragment {
 
@@ -38,6 +40,7 @@ public class MessagesFragment extends Fragment {
         recyclerView = rootView.findViewById(R.id.messageList);
         DatabaseHelper databaseHelper = DatabaseHelper.getDB(getContext());
         ArrayList<MessageData> messageData = (ArrayList<MessageData>) databaseHelper.messageDataDao().getAllMessages();
+        Collections.sort(messageData, (m1, m2) -> m2.getTime().compareTo(m1.getTime()));
         adapter = new MessagesAdapter(messageData);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
