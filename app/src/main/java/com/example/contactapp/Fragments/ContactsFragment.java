@@ -63,6 +63,7 @@ public class ContactsFragment extends Fragment {
         List<ContactsData> data = new ArrayList<>();
         data.add(new ContactsData("Vamsi","Madhav H","9480319265"));
         data.add(new ContactsData("Vamsi","Mad","9880074474"));
+        data.add(new ContactsData("Vamsi","JIO","8310749424"));
 
         return data;
     }
