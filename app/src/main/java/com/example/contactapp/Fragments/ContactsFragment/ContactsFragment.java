@@ -3,6 +3,8 @@ package com.example.contactapp.Fragments.ContactsFragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,23 +44,23 @@ public class ContactsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_contacts, container, false);
         recyclerView = rootView.findViewById(R.id.contactList);
         List<ContactsData> data = getData();
-        clickListener = new ClickListener() {
-            @Override
-            public void onClick(int index) {
-                Bundle args = new Bundle();
-                args.putParcelable("data", data.get(index));
-                DisplayContact displayContact = new DisplayContact();
-                displayContact.setArguments(args);
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.layout,
-                                displayContact).commit();
-            }
+        clickListener = index -> {
+            FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
+            Bundle args = new Bundle();
+            args.putParcelable("data", data.get(index));
+            DisplayContact displayContact = new DisplayContact();
+            displayContact.setArguments(args);
+            transaction.replace(R.id.layout, displayContact);
+            transaction.addToBackStack(null);
+            transaction.commit();
         };
         adapter = new ContactsAdapter(data,clickListener);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return rootView;
     }
+
+
 
     private List<ContactsData> getData() {
         List<ContactsData> data = new ArrayList<>();
@@ -68,5 +70,6 @@ public class ContactsFragment extends Fragment {
 
         return data;
     }
+
 
 }

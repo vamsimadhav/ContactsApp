@@ -3,6 +3,7 @@ package com.example.contactapp.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,14 +48,15 @@ public class DisplayContact extends Fragment {
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentTransaction transaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 Bundle args = new Bundle();
                 args.putString("phNo",mobileNumber);
                 args.putString("name",name);
                 SendMessage sendMsg = new SendMessage();
                 sendMsg.setArguments(args);
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.layout,
-                                sendMsg).commit();
+                transaction.replace(R.id.layout, sendMsg);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
         return rootView;
