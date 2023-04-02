@@ -25,7 +25,8 @@
             android:id="@+id/sendMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/send_message" />
+            android:text="@string/send_message"
+            android:backgroundTint="@color/black"/>
 
     </LinearLayout>
 </FrameLayout>

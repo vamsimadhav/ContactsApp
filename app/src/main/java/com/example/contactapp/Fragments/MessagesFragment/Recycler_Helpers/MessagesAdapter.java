@@ -12,8 +12,13 @@ import com.example.contactapp.Fragments.ContactsFragment.Recycler_Helpers.Contac
 import com.example.contactapp.Fragments.ContactsFragment.Recycler_Helpers.ContactsViewHolder;
 import com.example.contactapp.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesViewHolder> {
 
@@ -40,6 +45,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesViewHolder> {
     public void onBindViewHolder(@NonNull MessagesViewHolder holder, int position) {
         MessageData data = list.get(position);
         holder.name.setText(data.getName());
+//        String date = getDate(data.getTime());
         holder.time.setText(data.getTime());
         holder.otp.setText(data.getOtp());
 
@@ -56,4 +62,13 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesViewHolder> {
     {
         super.onAttachedToRecyclerView(recyclerView);
     }
+
+//    private String getDate(String time) {
+////        long unix_seconds = Long.parseLong(time);
+////        Date date = new Date(unix_seconds * 1000L);
+////        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // Create a SimpleDateFormat object with the desired date format
+////        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+////        String formattedDate = sdf.format(date);
+////        return formattedDate;
+//    }
 }

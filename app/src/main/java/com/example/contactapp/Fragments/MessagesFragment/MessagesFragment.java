@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.contactapp.Fragments.MessagesFragment.Recycler_Helpers.DatabaseHelper;
 import com.example.contactapp.Fragments.MessagesFragment.Recycler_Helpers.MessageData;
@@ -38,8 +39,15 @@ public class MessagesFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_messages, container, false);
         recyclerView = rootView.findViewById(R.id.messageList);
+        TextView textView = rootView.findViewById(R.id.textIc);
         DatabaseHelper databaseHelper = DatabaseHelper.getDB(getContext());
         ArrayList<MessageData> messageData = (ArrayList<MessageData>) databaseHelper.messageDataDao().getAllMessages();
+        if (messageData.size() == 0) {
+            recyclerView.setVisibility(View.GONE);
+            textView.setVisibility(View.VISIBLE);
+        } else {
+            textView.setVisibility(View.GONE);
+        }
         Collections.sort(messageData, (m1, m2) -> m2.getTime().compareTo(m1.getTime()));
         adapter = new MessagesAdapter(messageData);
         recyclerView.setAdapter(adapter);

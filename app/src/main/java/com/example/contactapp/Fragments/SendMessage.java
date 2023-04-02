@@ -3,6 +3,8 @@ package com.example.contactapp.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,11 @@ import org.json.JSONObject;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Random;
 
 public class SendMessage extends Fragment {
@@ -70,7 +77,7 @@ public class SendMessage extends Fragment {
             @Override
             public void run() {
                 try {
-                    URL url = new URL(" https://2f55-2406-7400-73-8114-2515-bbc4-11f5-f2f4.in.ngrok.io/sms"); // Replace <your_backend_url> with your Node.js backend URL
+                    URL url = new URL("https://1734-2406-7400-73-8114-88fb-1a00-50fb-4b57.in.ngrok.io/sms"); // Replace <your_backend_url> with your Node.js backend URL
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("POST");
                     connection.setRequestProperty("Content-Type", "application/json");
@@ -87,7 +94,7 @@ public class SendMessage extends Fragment {
                     if (responseCode == HttpURLConnection.HTTP_OK) {
                         // Message sent successfully
                         Looper.prepare();
-                        databaseHelper.messageDataDao().addMessageData(new MessageData(name,String.valueOf(System.currentTimeMillis()),otp));
+                        databaseHelper.messageDataDao().addMessageData(new MessageData(name,getDate(),otp));
                         Toast.makeText(getContext(), "Message Sent", Toast.LENGTH_SHORT).show();
                         // Handle the response if needed
                     } else {
@@ -104,6 +111,8 @@ public class SendMessage extends Fragment {
                 }
             }
         }).start();
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
     }
 
     public static String getRandomNumberString() {
@@ -113,6 +122,13 @@ public class SendMessage extends Fragment {
 
         // this will convert any number sequence into 6 character.
         return String.format("%06d", number);
+    }
+
+    public static String getDate() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        String formattedDateTime = formatter.format(calendar.getTime());
+        return formattedDateTime;
     }
 
 }

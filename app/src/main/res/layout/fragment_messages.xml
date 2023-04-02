@@ -10,4 +10,14 @@
         android:layout_height="match_parent"
         android:id="@+id/messageList"/>
 
+    <TextView
+        android:id="@+id/textIc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NO DATA"
+        android:textSize="30sp"
+        android:layout_marginTop="120dp"
+        android:textAlignment="center"
+        android:visibility="gone"/>
+
 </FrameLayout>
