@@ -1,34 +1,31 @@
 package com.example.contactapp.Fragments;
 
-import static android.util.Base64.NO_WRAP;
-
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-
-import android.os.Handler;
 import android.os.Looper;
-import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.contactapp.Fragments.MessagesFragment.Recycler_Helpers.DatabaseHelper;
+import com.example.contactapp.Fragments.MessagesFragment.Recycler_Helpers.MessageData;
 import com.example.contactapp.R;
-import com.hihi.twiliosms.Twilio;
-import com.hihi.twiliosms.TwilioMessage;
-
 import org.json.JSONObject;
-
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Random;
 
 public class SendMessage extends Fragment {
+
+    private DatabaseHelper databaseHelper;
+    private String name;
+    private String otp;
+    private String phNoWithCode;
 
     public SendMessage() {
         // Required empty public constructor
@@ -45,16 +42,20 @@ public class SendMessage extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_send_message, container, false);
+        databaseHelper = DatabaseHelper.getDB(getContext());
         Button sendMessage = rootView.findViewById(R.id.sendMessage);
-        EditText testMessage = rootView.findViewById(R.id.textMessage);
+        TextView testMessage = rootView.findViewById(R.id.textMessage);
         Bundle args = getArguments();
         String ph = args.getString("phNo");
-        String phNoWithCode = "+91" + ph;
+        name = args.getString("name");
+        phNoWithCode = "+91" + ph;
+        otp =  getRandomNumberString();
+        String tmessage = "Hi. Your OTP is: " + otp;
+        testMessage.setText(tmessage);
 
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String tmessage = testMessage.getText().toString();
                 sendSMS(phNoWithCode,tmessage);
             }
         });
@@ -83,6 +84,7 @@ public class SendMessage extends Fragment {
                     if (responseCode == HttpURLConnection.HTTP_OK) {
                         // Message sent successfully
                         Looper.prepare();
+                        databaseHelper.messageDataDao().addMessageData(new MessageData(name,String.valueOf(System.currentTimeMillis()),otp));
                         Toast.makeText(getContext(), "Message Sent", Toast.LENGTH_SHORT).show();
                         // Handle the response if needed
                     } else {
@@ -99,6 +101,15 @@ public class SendMessage extends Fragment {
                 }
             }
         }).start();
+    }
+
+    public static String getRandomNumberString() {
+        // from 0 to 999999
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999);
+
+        // this will convert any number sequence into 6 character.
+        return String.format("%06d", number);
     }
 
 }

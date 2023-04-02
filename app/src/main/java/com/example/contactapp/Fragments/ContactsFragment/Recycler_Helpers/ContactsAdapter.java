@@ -1,4 +1,4 @@
-package com.example.contactapp.Recycler_Helpers;
+package com.example.contactapp.Fragments.ContactsFragment.Recycler_Helpers;
 
 import android.content.Context;
 import android.view.LayoutInflater;

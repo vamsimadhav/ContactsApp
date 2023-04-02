@@ -12,18 +12,14 @@
         android:layout_gravity="center"
         android:gravity="center">
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:id="@+id/textMessage"
             android:layout_margin="16dp"
-            android:hint="Enter the Message to Send"
             android:gravity="top|start"
             android:textSize="18sp"
-            android:text=""
-            android:minLines="4"
-            android:lines="8"
-            android:inputType="textMultiLine" />
+            android:text="Hello"/>
 
         <Button
             android:id="@+id/sendMessage"

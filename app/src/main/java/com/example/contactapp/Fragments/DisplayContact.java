@@ -11,11 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.contactapp.R;
-import com.example.contactapp.Recycler_Helpers.ContactsData;
+import com.example.contactapp.Fragments.ContactsFragment.Recycler_Helpers.ContactsData;
 
 public class DisplayContact extends Fragment {
 
     private String mobileNumber;
+    private String name;
 
     public DisplayContact() {
         // Required empty public constructor
@@ -37,10 +38,10 @@ public class DisplayContact extends Fragment {
         Bundle args = getArguments();
         if (args != null) {
             ContactsData data = args.getParcelable("data");
-            String full_name = data.getFirstName() + " " + data.getLastName();
+            name = data.getFirstName() + " " + data.getLastName();
             mobileNumber = data.getMobNum();
 
-            fullName.setText(full_name);
+            fullName.setText(name);
             mobileNum.setText(mobileNumber);
         }
         sendMessage.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +49,7 @@ public class DisplayContact extends Fragment {
             public void onClick(View view) {
                 Bundle args = new Bundle();
                 args.putString("phNo",mobileNumber);
+                args.putString("name",name);
                 SendMessage sendMsg = new SendMessage();
                 sendMsg.setArguments(args);
                 getActivity().getSupportFragmentManager().beginTransaction()

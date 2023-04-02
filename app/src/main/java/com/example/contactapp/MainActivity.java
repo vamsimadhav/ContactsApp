@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.contactapp.Fragments.ContactsFragment;
-import com.example.contactapp.Fragments.MessagesFragment;
+import com.example.contactapp.Fragments.ContactsFragment.ContactsFragment;
+import com.example.contactapp.Fragments.MessagesFragment.MessagesFragment;
 
 public class MainActivity extends AppCompatActivity {
 
